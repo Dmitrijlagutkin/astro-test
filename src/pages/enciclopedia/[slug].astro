@@ -10,12 +10,18 @@ export function getStaticPaths() {
     params: {
       title: article.title,
       slug: article.slug,
+      pageName: article.pageName
     }
   }));
 }
 
+console.log("Astro.params.slug", Astro.params.slug)
+const page = STATIC_PATHS.find((path) => path.slug === Astro.params.slug)
+
+// console.log(page)
+
 // Parse the HTML content based on the dynamic slug
-const { title, sections } = await parseHtml({ slug: Astro.params.slug });
+const { title, sections } = await parseHtml({ slug: page?.pageName });
 ---
 
 <BaseLayout>
