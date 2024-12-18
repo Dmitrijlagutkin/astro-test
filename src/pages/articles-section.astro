@@ -1,0 +1,30 @@
+---
+import { parseHtml } from '../scripts/parseHtml';
+import BaseLayout from '../layouts/BaseLayout.astro';
+// import FileItems from '../components/FileItems.astro';
+
+const { title, paragraphs, links, baseUrl, sections } = await parseHtml();
+---
+
+<BaseLayout >
+  <!-- <FileItems/> -->
+  <div>
+    <h1>{title}</h1>
+     {/* Render sections */}
+     {/* Render sections as raw HTML */}
+     {sections.map((section, index) => (
+      <section set:html={section}></section>
+    ))}
+    <!-- {paragraphs.map((paragraph) => (
+      <p>{paragraph}</p>
+    ))}
+    
+    <ul>
+      {links.map((link) => (
+        <li>
+          <a href={baseUrl} target="_blank">{link.text}</a>
+        </li>
+      ))}
+    </ul> -->
+  </div>
+</BaseLayout>
