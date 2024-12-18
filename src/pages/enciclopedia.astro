@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = "Enciclopedia";
 import { STATIC_PATHS } from '../constants';
 
+export const prerender = true
+
 export function getStaticPaths() {
   return STATIC_PATHS.map((article) => ({
     params: {
