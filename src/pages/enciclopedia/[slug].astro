@@ -1,0 +1,32 @@
+---
+import { parseHtml } from '../../scripts/parseHtml';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { STATIC_PATHS } from '../../constants';
+
+export function getStaticPaths() {
+  return STATIC_PATHS.map((article) => ({
+    params: {
+      title: article.title,
+      slug: article.slug,
+    }
+  }));
+}
+
+// Parse the HTML content based on the dynamic slug
+const { title, sections } = await parseHtml({ slug: Astro.params.slug });
+---
+
+<BaseLayout>
+  <div>
+    <h1>{title}</h1>
+    {sections.map((section) => (
+      <section set:html={section}></section>
+    ))}
+  </div>
+  <style is:global>
+    section a {
+      color: #93282C !important;
+      text-decoration: none !important;
+    }
+  </style>
+</BaseLayout>

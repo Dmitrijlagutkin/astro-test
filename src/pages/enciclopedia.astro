@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = "Enciclopedia";
+import { STATIC_PATHS } from '../constants';
+
+export const prerender = false;
+
+export function getStaticPaths() {
+  return STATIC_PATHS.map((article) => ({
+    params: {
+      title: article.title,
+      slug: article.slug,
+    }
+  }));
+}
+---
+<BaseLayout pageTitle={pageTitle}>
+  	<h2>Enciclopedia</h2>
+
+    <!-- List the article titles dynamically -->
+    <ul>
+        {STATIC_PATHS.map((path) => (
+            <li>
+              <a href={`/enciclopedia/${path.slug}`}>
+                {path.title}
+              </a>
+            </li>
+          ))}
+    </ul>
+</BaseLayout>
