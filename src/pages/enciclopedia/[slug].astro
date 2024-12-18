@@ -15,7 +15,6 @@ export function getStaticPaths() {
   }));
 }
 
-console.log("Astro.params.slug", Astro.params.slug)
 const page = STATIC_PATHS.find((path) => path.slug === Astro.params.slug)
 
 // console.log(page)
