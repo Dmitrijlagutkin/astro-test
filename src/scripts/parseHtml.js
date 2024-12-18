@@ -14,6 +14,8 @@ export async function parseHtml() {
     .map((i, el) => $(el).html())
     .get();
 
+  $("a").removeAttr("style");
+
   const title = $("title").text();
   const paragraphs = $("p")
     .map((i, el) => $(el).text())
